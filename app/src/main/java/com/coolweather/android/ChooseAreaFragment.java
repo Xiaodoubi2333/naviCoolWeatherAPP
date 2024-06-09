@@ -1,7 +1,9 @@
 package com.coolweather.android;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,10 +128,15 @@ public class ChooseAreaFragment extends Fragment {
                 else if (currentLevel == LEVEL_COUNTY) {
                     String weatherId = countyList.get(position).getWeatherId();
                     if (getActivity() instanceof MainActivity) {
-                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
-                        intent.putExtra("weather_id", weatherId);
-                        startActivity(intent);
-                        getActivity().finish();
+                        // 获取SharedPreferences实例
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("GlobalPreferences", Context.MODE_PRIVATE);
+                        // 获取Editor对象
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        // 存储一个字符串
+                        editor.putString("weather_id", weatherId);
+                        // 提交更改
+                        editor.apply();
+
                     } else if (getActivity() instanceof WeatherActivity) {
                         WeatherActivity activity = (WeatherActivity) getActivity();
                         activity.drawerLayout.closeDrawers();

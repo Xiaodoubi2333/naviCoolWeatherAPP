@@ -71,15 +71,8 @@ public class WeatherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            View decorView = getWindow().getDecorView();
-//            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-//            getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        }
-        setContentView(R.layout.activity_weather);
+        setContentView(R.layout.activity_weather);          //* 提到了activity_weather ( .xml)
         // 初始化各控件
-//        bingPicImg = (ImageView) findViewById(R.id.bing_pic_img);
         weatherLayout = (ScrollView) findViewById(R.id.weather_layout);
         titleCity = (TextView) findViewById(R.id.title_city);
         titleUpdateTime = (TextView) findViewById(R.id.title_update_time);
@@ -101,28 +94,39 @@ public class WeatherActivity extends AppCompatActivity {
         navButton = (Button) findViewById(R.id.nav_button);
         //*  阶段五：手动选择城市.
 
+
+        //* 阶段七：weatherId 模板：
+        //* 阶段七：weatherId 模板：
+        //* 阶段七：weatherId 模板：
         SharedPreferences prefs = getDefaultSharedPreferences(this);
         String weatherString = prefs.getString("weather", null);
 
-        //  阶段四：手动更新天气，和城市
-        final String weatherId;
+                //  阶段四：手动更新天气，和城市
+                final String weatherId;
 
-        if (weatherString != null) {
-            // 有缓存时直接解析天气数据
-            Weather weather = Utility.handleWeatherResponse(weatherString);
-            weatherId = weather.basic.weatherId;
-            showWeatherInfo(weather);
-        } else {
-            // 无缓存时去服务器查询天气
-//            String weatherId=getIntent().getStringExtra("weather_id");    // 版本三
-            //* 版本四：
-            weatherId=getIntent().getStringExtra("weather_id");
-//            mWeatherId = getIntent().getStringExtra("weather_id");
-            weatherLayout.setVisibility(View.INVISIBLE);
-//            requestWeather(mWeatherId);
-            requestWeather(weatherId);
-        }
+                if (weatherString != null) {
+//                    // 有缓存时直接解析天气数据
+//                    Weather weather = Utility.handleWeatherResponse(weatherString);
+//                    weatherId = weather.basic.weatherId;
+//                    showWeatherInfo(weather);
+                    weatherId=getIntent().getStringExtra("weather_id");
+                    weatherLayout.setVisibility(View.INVISIBLE);
+                    requestWeather(weatherId);          //* 关键，能够更新weatherActivity.java对应的 xml
+                }
+                else
+                    {
+//* 阶段七：weatherId 模板：
+                        //* 阶段七：weatherId 模板：
+                        //* 阶段七：weatherId 模板：
+                    // 无缓存时去服务器查询天气
+                    //* 版本四：
+                    weatherId=getIntent().getStringExtra("weather_id");
+                    weatherLayout.setVisibility(View.INVISIBLE);
+                    requestWeather(weatherId);          //* 关键，能够更新weatherActivity.java对应的 xml
+                }
+        //* 阶段七：weatherId 模板：
 
+//* 阶段七：weatherId 模板：
         //* 版本四：
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -144,12 +148,6 @@ public class WeatherActivity extends AppCompatActivity {
         });
         //*  阶段五：手动选择城市.
 
-//        String bingPic = prefs.getString("bing_pic", null);
-//        if (bingPic != null) {
-//            Glide.with(this).load(bingPic).into(bingPicImg);
-//        } else {
-//            loadBingPic();
-//        }
     }
 
     /**
@@ -211,32 +209,7 @@ public class WeatherActivity extends AppCompatActivity {
 //        loadBingPic();
     }
 //
-//    /**
-//     * 加载必应每日一图
-//     */
-//    private void loadBingPic() {
-//        String requestBingPic = "http://guolin.tech/api/bing_pic";
-//        HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                final String bingPic = response.body().string();
-//                SharedPreferences.Editor editor = getDefaultSharedPreferences(WeatherActivity.this).edit();
-//                editor.putString("bing_pic", bingPic);
-//                editor.apply();
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Glide.with(WeatherActivity.this).load(bingPic).into(bingPicImg);
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
-//    }
+
 
     /**
      * 处理并展示Weather实体类中的数据。
@@ -277,7 +250,5 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
-//        Intent intent = new Intent(this, AutoUpdateService.class);
-//        startService(intent);
     }
 }
