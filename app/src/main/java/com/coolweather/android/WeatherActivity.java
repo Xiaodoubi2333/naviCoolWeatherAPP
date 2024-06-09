@@ -35,13 +35,14 @@ import okhttp3.Response;
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class WeatherActivity extends AppCompatActivity {
-//    public DrawerLayout drawerLayout;
-//
+    public DrawerLayout drawerLayout;
+    private Button navButton;
+
     public SwipeRefreshLayout swipeRefresh;
 
     private ScrollView weatherLayout;
 
-//    private Button navButton;
+
 
     private TextView titleCity;
 
@@ -92,8 +93,14 @@ public class WeatherActivity extends AppCompatActivity {
         sportText = (TextView) findViewById(R.id.sport_text);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
-//        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        navButton = (Button) findViewById(R.id.nav_button);
+
+        //*  阶段五：手动选择城市.
+        //*  阶段五：手动选择城市.
+        //*  阶段五：手动选择城市.
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navButton = (Button) findViewById(R.id.nav_button);
+        //*  阶段五：手动选择城市.
+
         SharedPreferences prefs = getDefaultSharedPreferences(this);
         String weatherString = prefs.getString("weather", null);
 
@@ -123,12 +130,20 @@ public class WeatherActivity extends AppCompatActivity {
                 requestWeather(weatherId);
             }
         });
-//        navButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                drawerLayout.openDrawer(GravityCompat.START);
-//            }
-//        });
+
+
+        //*  阶段五：手动选择城市.
+        //*  阶段五：手动选择城市.
+//*  阶段五：手动选择城市.
+        //*  阶段五：手动选择城市.
+        navButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+        //*  阶段五：手动选择城市.
+
 //        String bingPic = prefs.getString("bing_pic", null);
 //        if (bingPic != null) {
 //            Glide.with(this).load(bingPic).into(bingPicImg);

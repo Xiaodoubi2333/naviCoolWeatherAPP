@@ -100,6 +100,7 @@ public class ChooseAreaFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (currentLevel == LEVEL_PROVINCE) {
@@ -112,13 +113,32 @@ public class ChooseAreaFragment extends Fragment {
 //*     阶段三：
                 //*     阶段三：
                 //*     阶段三：
+//                else if (currentLevel == LEVEL_COUNTY) {
+//                    String weatherId=countyList.get(position).getWeatherId();
+//                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
+//                    intent.putExtra("weather_id",weatherId);
+//                    startActivity(intent);
+//                    getActivity().finish();
+//                }
+                //*     阶段三：
+
+                //*     阶段五：手动更换城市( 左上角spawn键).
                 else if (currentLevel == LEVEL_COUNTY) {
-                    String weatherId=countyList.get(position).getWeatherId();
-                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
-                    intent.putExtra("weather_id",weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
+                    String weatherId = countyList.get(position).getWeatherId();
+                    if (getActivity() instanceof MainActivity) {
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weather_id", weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else if (getActivity() instanceof WeatherActivity) {
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.swipeRefresh.setRefreshing(true);
+                        activity.requestWeather(weatherId);
+                    }
                 }
+
+
             }
         });
         //
