@@ -1,6 +1,9 @@
 package com.coolweather.android.ui.home;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.coolweather.android.R;
+import com.coolweather.android.WeatherActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -28,7 +32,10 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         //* 我不喜欢的 textView
-//        // 设置 TextView
+        /**/
+        /**/
+        /**/
+        //        // 设置 TextView
 //        final TextView textView = root.findViewById(R.id.text_home);
 //        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
@@ -40,6 +47,21 @@ public class HomeFragment extends Fragment {
         // 确保 ChooseAreaFragment 正确加载（已经通过 fragment_home.xml 的 <fragment> 标签加载）
         // 无需在代码中再次处理
 
+
+//阶段三：
+        /*    调用WeatherActivity(  被碎片)：  ChatGPT提供      */
+        /*    调用WeatherActivity(  被碎片)：  ChatGPT提供      */
+        /*    调用WeatherActivity(  被碎片)：  ChatGPT提供      */
+        // 检查 SharedPreferences 并启动 WeatherActivity
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (prefs.getString("weather", null) != null) {
+            Intent intent = new Intent(getActivity(), WeatherActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
+        /*    调用WeatherActivity(  被碎片)：  ChatGPT提供      */
+        /*    调用WeatherActivity(  被碎片)：  ChatGPT提供      */
+        /*    调用WeatherActivity(  被碎片)：  ChatGPT提供      */
         return root;
     }
 //        @Override

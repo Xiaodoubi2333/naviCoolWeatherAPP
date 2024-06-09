@@ -109,8 +109,22 @@ public class ChooseAreaFragment extends Fragment {
                     selectedCity = cityList.get(position);
                     queryCounties();
                 }
+//*     阶段三：
+                //*     阶段三：
+                //*     阶段三：
+                else if (currentLevel == LEVEL_COUNTY) {
+                    String weatherId=countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
             }
         });
+        //
+        //
+        //
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
