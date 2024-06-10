@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,11 @@ import androidx.fragment.app.Fragment;
 import com.coolweather.android.db.City;
 import com.coolweather.android.db.County;
 import com.coolweather.android.db.Province;
+import com.coolweather.android.model.CountyModel;
 import com.coolweather.android.util.HttpUtil;
 import com.coolweather.android.util.Utility;
 
+import org.greenrobot.eventbus.EventBus;
 import org.litepal.crud.DataSupport;
 
 import java.io.IOException;
@@ -84,12 +87,21 @@ public class ChooseAreaFragment extends Fragment {
      * 当前选中的级别
      */
     private int currentLevel;
+private int type=0;
+    public ChooseAreaFragment() {
+    }
 
+    public ChooseAreaFragment(int type) {
+        this.type = type;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.choose_area, container, false);
+        if (type==1){
+            view.findViewById(R.id.appBar).setVisibility(View.GONE);
+        }
         titleText = (TextView) view.findViewById(R.id.title_text);
         backButton = (Button) view.findViewById(R.id.back_button);
         listView = (ListView) view.findViewById(R.id.list_view);
@@ -138,16 +150,20 @@ public class ChooseAreaFragment extends Fragment {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         // 存储天气 ID
                         editor.putString("weather_id", weatherId);
-                        // 存储县的汉字名称
+                        // 存储县的汉字名称xuanz
                         editor.putString("county_name", countyName);
                         // 提交更改
                         editor.apply();
-
+                        if (type==1){
+                            EventBus.getDefault().post(new CountyModel(weatherId,countyName));
+                        }
+                    Log.e("mydebug","weather_id:"+weatherId);
                     } else if (getActivity() instanceof WeatherActivity) {
                         WeatherActivity activity = (WeatherActivity) getActivity();
                         activity.drawerLayout.closeDrawers();
                         activity.swipeRefresh.setRefreshing(true);
                         activity.requestWeather(weatherId);
+                        Log.e("mydebug","weather_id2:"+weatherId);
                     }
                 }
 

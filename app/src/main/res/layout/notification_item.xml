@@ -24,10 +24,12 @@
         android:textColor="@android:color/black" />
 
     <ImageView
+        android:id="@+id/imgDelete"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_weight="1"
         android:src="@drawable/ic_cloud_done_black_24dp"
         android:paddingStart="8dp" />
+
 
 </LinearLayout>

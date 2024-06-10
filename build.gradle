@@ -4,7 +4,20 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        // 配置HMS Core SDK的Maven仓地址。
+        maven {url 'https://developer.huawei.com/repo/'}
+
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
+        }
+
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
@@ -18,7 +31,20 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        // 配置HMS Core SDK的Maven仓地址。
+        maven {url 'https://developer.huawei.com/repo/'}
+
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
+        }
+
+
     }
 }
 
