@@ -7,12 +7,10 @@ import java.util.Date;
 
 public class Entity {  //考试通知实体类
     private String courseName;  //课程名
-    private Date examDate;  //考试日期
     private String examDetails;  //考试详情
 
-    public Entity(String courseName, Date examDate, String examDetails){  //构造方法
+    public Entity(String courseName, String examDetails){
         this.courseName=courseName;
-        this.examDate=examDate;
         this.examDetails=examDetails;
     }
 
@@ -20,11 +18,8 @@ public class Entity {  //考试通知实体类
         return courseName;
     }
 
-    public Date getExamDate(){    //getter
-        return examDate;
-    }
-
     public String getExamDetails(){   //getter
         return examDetails;
     }
+
 }
