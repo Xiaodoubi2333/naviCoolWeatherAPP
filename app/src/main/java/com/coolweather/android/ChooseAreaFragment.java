@@ -126,14 +126,20 @@ public class ChooseAreaFragment extends Fragment {
 
                 //*     阶段五：手动更换城市( 左上角spawn键).
                 else if (currentLevel == LEVEL_COUNTY) {
+                    // 获取当前选中的县的汉字名称
+                    String countyName = countyList.get(position).getCountyName();
+                    // 获取当前选中的县的天气 ID
                     String weatherId = countyList.get(position).getWeatherId();
+                    // 将县的汉字名称和天气 ID 存储到全局变量中
                     if (getActivity() instanceof MainActivity) {
                         // 获取SharedPreferences实例
                         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("GlobalPreferences", Context.MODE_PRIVATE);
                         // 获取Editor对象
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        // 存储一个字符串
+                        // 存储天气 ID
                         editor.putString("weather_id", weatherId);
+                        // 存储县的汉字名称
+                        editor.putString("county_name", countyName);
                         // 提交更改
                         editor.apply();
 
