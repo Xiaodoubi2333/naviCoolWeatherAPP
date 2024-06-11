@@ -22,4 +22,16 @@
         android:name="com.coolweather.android.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+
+
+
+
+    <fragment
+        android:id="@+id/readmework"
+        android:name="com.coolweather.android.ui.readmework.ReadmeworkFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/readmework" />
+
+
 </navigation>
